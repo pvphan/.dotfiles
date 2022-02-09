@@ -116,8 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias vim="nvim"
-alias vims="nvim -S Session.vim"
+alias vims="vim -S Session.vim"
 alias goharvest="cd ~/git/harvest"
 alias cleardocker='docker kill $(docker ps -q); docker rm $(docker ps -a -q)'
 alias purgedocker='docker rmi $(docker images | grep "^<none>" | awk "{print $3}")'
