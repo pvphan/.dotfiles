@@ -33,6 +33,8 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+set cursorline
+
 " syntax
 syntax on
 " support 256 color
@@ -184,6 +186,7 @@ map <C-a> <Nop>
 let g:python_highlight_all = 1
 
 " fancy remaps from ThePrimeagen
+let mapleader = " "
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
