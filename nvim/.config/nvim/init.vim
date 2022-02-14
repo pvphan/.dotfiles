@@ -187,8 +187,8 @@ let g:python_highlight_all = 1
 
 " fancy remaps from ThePrimeagen
 let mapleader = " "
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+"vnoremap J :m '>+1<CR>gv=gv
+"vnoremap K :m '<-2<CR>gv=gv
 
 nnoremap Y yg$
 nnoremap n nzzzv
