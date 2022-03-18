@@ -189,11 +189,11 @@ let g:python_highlight_all = 1
 let mapleader = " "
 "vnoremap J :m '>+1<CR>gv=gv
 "vnoremap K :m '<-2<CR>gv=gv
+"nnoremap J mzJ`z
 
 nnoremap Y yg$
 nnoremap n nzzzv
 nnoremap N Nzzzv
-nnoremap J mzJ`z
 
 xnoremap <leader>p "_dP
 
