@@ -14,6 +14,8 @@ Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'kien/ctrlp.vim'
 Plugin 'joom/latex-unicoder.vim'
 Plugin 'vim-python/python-syntax'
+Plugin 'oscarh/vimerl'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -120,6 +122,13 @@ autocmd FileType tex nnoremap ,p :!orig=% && fnd=".tex" && rpl=".pdf" &&
 
 " set yaml stuff
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" set lua stuff
+au Filetype lua setl et ts=2 sw=2
+
+augroup filetypedetect
+    au BufRead,BufNewFile *.ex set filetype=erlang
+augroup END
 
 "" for copy-paste to clipboard
 "set clipboard=unnamedplus
