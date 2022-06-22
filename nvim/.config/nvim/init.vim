@@ -15,6 +15,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'joom/latex-unicoder.vim'
 Plugin 'vim-python/python-syntax'
 Plugin 'oscarh/vimerl'
+Plugin 'neovim/nvim-lspconfig'
 
 call vundle#end()
 
@@ -176,7 +177,8 @@ autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
 ""Remove all trailing whitespace on write
 autocmd BufWritePre * %s/\s\+$//e
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.pdf
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.pdf,*__pycache__*
+let NERDTreeRespectWildIgnore=1
 let g:ctrlp_custom_ignore = '\v[\/](build)|(\.(git|hg|svn))$'
 let g:ctrlp_map = '<c-p>'
 

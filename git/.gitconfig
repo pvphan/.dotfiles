@@ -57,3 +57,8 @@
 	path = /usr/local/bin/p4merge
 [mergetool]
 	prompt = false
+[safe]
+	directory = /home/vinh/git/harvest
+	directory = /root/git/harvest
+	directory = /root/git/calibration
+	directory = /root/git/ops
