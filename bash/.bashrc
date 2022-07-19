@@ -136,3 +136,5 @@ function gitsed () {
             <(git grep -l "$originalText" | xargs sed "s/$originalText/$newText/g")
     fi
 }
+
+. $HOME/.asdf/asdf.sh
