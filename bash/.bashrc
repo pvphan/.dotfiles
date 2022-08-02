@@ -138,3 +138,4 @@ function gitsed () {
 }
 
 . $HOME/.asdf/asdf.sh
+complete -W "$(docker ps --format "{{.Names}}")" dockerlogs
