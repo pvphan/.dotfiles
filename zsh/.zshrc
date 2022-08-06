@@ -147,7 +147,7 @@ else
 	preexec_functions+='preexec_update_git_vars'
 	precmd_functions+='precmd_update_git_vars'
 	chpwd_functions+='chpwd_update_git_vars'
-	PROMPT=$'%B%F{green}%n%b%F{default}@%B%F{cyan}%m%b%F{default}:%B%F{blue}%~%b%F{default}%F{yellow}$(prompt_git_info)%F{default} %(?.-.%F{red}%?%F{default})%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
+	PROMPT=$'%B%F{green}%n%b%F{default}@%B%F{cyan}%m%b%F{default}:%B%F{blue}%~%b%F{default}%F{yellow}$(prompt_git_info)%F{default} %(?.-.%F{red}%?%F{default})%(!.%F{red}#%F{default}.%F{green}\n$%F{default}) '
 fi
 
 # tab-completion
