@@ -126,12 +126,13 @@
                         ]
                     },
                     {
-                        "description": "Caps Lock as Command except in Kitty",
+                        "description": "Caps Lock as Command except in Terminal",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
                                             "^net\\.kovidgoyal\\.kitty$"
                                         ],
                                         "type": "frontmost_application_unless"
@@ -155,12 +156,13 @@
                         ]
                     },
                     {
-                        "description": "Caps Lock as Control in Kitty",
+                        "description": "Caps Lock as Control in Terminal",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
+                                            "^com\\.apple\\.Terminal$",
                                             "^net\\.kovidgoyal\\.kitty$"
                                         ],
                                         "type": "frontmost_application_if"
