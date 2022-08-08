@@ -1,191 +1,102 @@
-# few terminal keybinds
-bindkey -e
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-typeset -A key
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-key[Home]=${terminfo[khome]}
-key[End]=${terminfo[kend]}
-key[Insert]=${terminfo[kich1]}
-key[Delete]=${terminfo[kdch1]}
-key[Up]=${terminfo[kcuu1]}
-key[Down]=${terminfo[kcud1]}
-key[Left]=${terminfo[kcub1]}
-key[Right]=${terminfo[kcuf1]}
-key[PageUp]=${terminfo[kpp]}
-key[PageDown]=${terminfo[knp]}
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
 
-# setup key accordingly
-[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
-[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
-[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
-[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
-[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
-[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
-[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-# Finally, make sure the terminal is in application mode, when zle is
-# active. Only then are the values from $terminfo valid.
-if [[ -n ${terminfo[smkx]} ]] && [[ -n ${terminfo[rmkx]} ]]; then
-    function zle-line-init () {
-        echoti smkx
-    }
-    function zle-line-finish () {
-        echoti rmkx
-    }
-    zle -N zle-line-init
-    zle -N zle-line-finish  
-fi
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-zle -N fake-enter; bindkey "^X^H" fake-enter
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-# colors
-autoload -U colors
-colors
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-# aliases
-alias mv='nocorrect mv'
-alias cp='nocorrect cp'
-alias rm='rm'
-alias mkdir='nocorrect mkdir'
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
 
-alias ls="ls --color=auto"
-alias ll="ls --color -l"
-alias la="ls --color -la"
-alias lt="ls --sort=time"
-alias lat="ls --color -la --sort=time"
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
-alias rh='fc -R'
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
-autoload run-help
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-# zsh parameters
-typeset -U path
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
 
-#cdpath=(. ~)
-DIRSTACKSIZE=60
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
 
-# Autoload zsh functions.
-fpath=(~/.zsh/functions $fpath)
-autoload -U ~/.zsh/functions/*(:t)
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-fignore=(\~)
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
 
-LISTMAX=0
-LOGCHECK=60
-HISTSIZE=20000
-HISTFILE=~/.zsh_history
-MAILCHECK=1
-READNULLCMD=less
-REPORTTIME=15
-SAVEHIST=30000000
-TIMEFMT='%J  %*U user %*S system %P cpu (%*E wasted time).'
-watch=(all)
-WATCHFMT='%n %a %l from %m at %t.'
-WORDCHARS="${WORDCHARS:s#/#}"
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
-# zsh options
-setopt \
-  auto_cd \
-  auto_name_dirs \
-  auto_pushd \
-  auto_resume \
-  no_beep \
-  cdable_vars \
-  csh_null_glob \
-  correct \
-  correct_all \
-  extended_glob \
-  extended_history \
-  no_glob_dots \
-  hist_allow_clobber \
-  hist_find_no_dups \
-  no_hist_ignore_all_dups \
-  hist_ignore_dups \
-  hist_reduce_blanks \
-  no_hist_save_no_dups \
-  inc_append_history \
-  no_list_ambiguous \
-  no_list_beep \
-  long_list_jobs \
-  magic_equal_subst \
-  no_notify \
-  prompt_subst \
-  pushd_minus \
-  pushd_silent \
-  pushd_to_home \
-  rc_quotes \
-  no_share_history \
-  shwordsplit \
-  transient_rprompt \
-  hist_ignore_space \
-  no_equals \
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
 
-# modules
-autoload -U url-quote-magic bracketed-paste-magic
-zle -N self-insert url-quote-magic
-zle -N bracketed-paste bracketed-paste-magic
+source $ZSH/oh-my-zsh.sh
 
-# Enable auto-execution of functions.
-unset preexec_functions
-unset precmd_functions
-unset chpwd_functions
-typeset -ga preexec_functions
-typeset -ga precmd_functions
-typeset -ga chpwd_functions
+# User configuration
 
-# Terminal title
-if [[ "$TERM" == xterm* ]] ; then
-  preexec_functions+='preexec_term_title'
-  precmd_functions+='precmd_term_title'
-fi
+# export MANPATH="/usr/local/man:$MANPATH"
 
-# prompt
-if [[ "$USER" == "root" ]] ; then
-	PROMPT=$'%B%F{red}%n%b%F{default}@%B%F{cyan}%m%b%F{default}:%B%F{blue}%~%b%F{default}%F{default} %(?.-.%F{red}%?%F{default})%(!.%F{red}#%F{default}.%F{green}$%F{default}) '
-else
-	preexec_functions+='preexec_update_git_vars'
-	precmd_functions+='precmd_update_git_vars'
-	chpwd_functions+='chpwd_update_git_vars'
-	PROMPT=$'%B%F{green}%n%b%F{default}@%B%F{cyan}%m%b%F{default}:%B%F{blue}%~%b%F{default}%F{yellow}$(prompt_git_info)%F{default} %(?.-.%F{red}%?%F{default})%(!.%F{red}#%F{default}.%F{green}\n$%F{default}) '
-fi
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-# tab-completion
-autoload -Uz compinit
-[[ -d "${ZDOTDIR:-$HOME}/.zcompdumps" ]] || mkdir -m 0700 -p "${ZDOTDIR:-$HOME}/.zcompdumps"
-compinit -i -d "${ZDOTDIR:-$HOME}/.zcompdumps/${HOST%%.*}-$ZSH_VERSION"
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' menu select=1
-zstyle ':completion::complete:cd::' tag-order '! users' -
-zstyle ':completion::complete:-command-::' tag-order '! users' -
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
 
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
-     /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
-zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX + $#SUFFIX) / 3 )) )'
-zstyle ':completion:*:descriptions' format "- %d -"
-zstyle ':completion:*:corrections' format "- %d - (errors %e})"
-zstyle ':completion:*:default' list-prompt '%S%M matches%s'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*:manuals' separate-sections true
-zstyle ':completion:*:manuals.(^1*)' insert-sections true
-zstyle ':completion:*' menu select
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*:kill:*:processes' command "ps x"
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
-zstyle ':completion:*' special-dirs true
-
-# misc functions
-stfu() {
-  "$@" &>/dev/null </dev/null
-}
-
-_comp_options=("${(@)_comp_options:#NO_ignoreclosebraces}")
-
-[[ -e ~/.shfuncs ]] && source ~/.shfuncs
-
-setopt notify
-
-bindkey '^[[1;5D' backward-word
-bindkey '^[[1;5C' forward-word
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+export PATH="$PATH:/opt/homebrew/bin/"
