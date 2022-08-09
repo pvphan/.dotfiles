@@ -99,4 +99,20 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+export PATH="$PATH:~/bin"
 export PATH="$PATH:/opt/homebrew/bin/"
+
+function gitsed () {
+    originalText=$1
+    newText=$2
+    if [ $3 == "f" ] ; then
+        git grep -l "$originalText" | xargs sed -i "s/$originalText/$newText/g"
+    else
+        diff --color --context=1 \
+            <$(git grep -l "$originalText" | xargs cat) \
+            <$(git grep -l "$originalText" | xargs sed "s/$originalText/$newText/g")
+    fi
+}
+
+alias vim="nvim"
+alias vims="nvim -S Session.vim"
