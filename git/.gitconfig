@@ -44,7 +44,7 @@
     fix = "!f() { vim `git diff --name-only`; }; f"
 
 [merge]
-	tool = p4merge
+    tool = nvim
 [credential]
 [http]
     sslverify = false
@@ -53,8 +53,8 @@
 	name = Vinh Phan
 [core]
 	editor = vim
-[mergetool "p4merge"]
-	path = /usr/local/bin/p4merge
+[mergetool "nvim"]
+    cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [mergetool]
 	prompt = false
 [safe]
@@ -62,3 +62,4 @@
 	directory = /root/git/harvest
 	directory = /root/git/calibration
 	directory = /root/git/ops
+
