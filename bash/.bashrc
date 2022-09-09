@@ -137,5 +137,6 @@ function gitsed () {
     fi
 }
 
+source $HOME/.dev.env
 . $HOME/.asdf/asdf.sh
 complete -W "$(docker ps --format "{{.Names}}")" dockerlogs
