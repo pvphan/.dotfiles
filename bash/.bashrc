@@ -153,3 +153,4 @@ function _makefile_targets {
     COMPREPLY=( $(compgen -W "${targets[@]}" -- $curr_arg ) );
 }
 complete -F _makefile_targets make
+alias goharvest='cd ~/git/harvest'
