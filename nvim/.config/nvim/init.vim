@@ -109,7 +109,7 @@ augroup filetypedetect
 augroup END
 
 " for copy-paste to clipboard
-set clipboard=
+set clipboard+=unnamedplus
 
 " persistent undo
 if has("persistent_undo")
