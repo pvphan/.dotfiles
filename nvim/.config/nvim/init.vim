@@ -15,6 +15,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'joom/latex-unicoder.vim'
 Plugin 'vim-python/python-syntax'
 Plugin 'JuliaEditorSupport/julia-vim'
+Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call vundle#end()
 
 filetype plugin indent on
@@ -24,7 +25,8 @@ set encoding=utf-8
 set nocompatible
 set autoindent
 set backup
-set nu
+set number
+set relativenumber
 set smartindent
 set showmatch
 set textwidth=0

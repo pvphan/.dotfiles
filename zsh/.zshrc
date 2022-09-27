@@ -115,6 +115,7 @@ function gitsed () {
 }
 
 alias vim="nvim"
+alias goharvest="cd ~/git/harvest"
 alias vims="nvim -S Session.vim"
 
 function _makefile_targets {
@@ -139,3 +140,5 @@ complete -F _makefile_targets make
 
 NEWLINE=$'\n'
 PROMPT='%(!.%{%F{yellow}%}.)%{$fg[green]%}$USER@%{$fg[green]%}%M :%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}${NEWLINE} %{$fg_bold[red]%}➜ % %{$reset_color%}'
+
+source ~/.dev.env
