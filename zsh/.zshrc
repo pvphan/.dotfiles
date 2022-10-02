@@ -142,3 +142,7 @@ NEWLINE=$'\n'
 PROMPT='%(!.%{%F{yellow}%}.)%{$fg[green]%}$USER@%{$fg[green]%}%M :%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}${NEWLINE} %{$fg_bold[red]%}➜ % %{$reset_color%}'
 
 source ~/.dev.env
+
+if which ruby >/dev/null && which gem >/dev/null; then
+  PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+fi
