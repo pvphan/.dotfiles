@@ -105,12 +105,18 @@ export PATH="$PATH:/opt/homebrew/bin/"
 function gitsed () {
     originalText=$1
     newText=$2
-    if [ $3 == "f" ] ; then
+    if [ "$#" -eq 2 ]; then
+        diff --color --context=1 \
+            <(git grep -l "$originalText" | xargs cat) \
+            <(git grep -l "$originalText" | xargs sed "s/$originalText/$newText/g")
+    elif [ "$#" -eq 3 ] && [ $3 = "f" ]; then
         git grep -l "$originalText" | xargs sed -i "s/$originalText/$newText/g"
     else
-        diff --color --context=1 \
-            <$(git grep -l "$originalText" | xargs cat) \
-            <$(git grep -l "$originalText" | xargs sed "s/$originalText/$newText/g")
+        echo "Example usage: "
+        echo ""
+        echo "\tgitsed <old_string> <new_string> [f]"
+        echo ""
+        echo "Including f will force the change"
     fi
 }
 
