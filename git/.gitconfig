@@ -1,5 +1,5 @@
 [push]
-    default = simple
+    default = current
 [diff]
 [color]
     ui = auto
@@ -15,7 +15,7 @@
     pullff = pull --ff-only
     noff = merge --no-ff
     fa = fetch --all
-    pom = push origin master
+    pom = push origin main
     b = branch
     ds = diff --stat=160,120
     dh1 = diff HEAD~1
@@ -44,7 +44,7 @@
     fix = "!f() { vim `git diff --name-only`; }; f"
 
 [merge]
-	tool = p4merge
+    tool = nvim
 [credential]
 [http]
     sslverify = false
@@ -53,7 +53,17 @@
 	name = Vinh Phan
 [core]
 	editor = vim
-[mergetool "p4merge"]
-	path = /usr/local/bin/p4merge
+[mergetool "nvim"]
+    cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [mergetool]
 	prompt = false
+[safe]
+	directory = /home/vinh/git/harvest
+	directory = /root/git/harvest
+	directory = /root/git/calibration
+	directory = /root/git/ops
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

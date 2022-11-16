@@ -117,13 +117,6 @@ if ! shopt -oq posix; then
 fi
 
 export PATH=$PATH:~/bin
-alias vims="vim -S Session.vim"
-alias goharvest="cd ~/git/harvest"
-alias cleardocker='docker kill $(docker ps -q); docker rm $(docker ps -a -q)'
-alias purgedocker='docker rmi $(docker images | grep "^<none>" | awk "{print $3}")'
-alias rsync2="rsync -ah --progress --append-verify"
-alias gtop="watch -n 1 nvidia-smi"
-alias streamjetson='gst-launch-1.0 -v udpsrc port=1234  caps = "application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96" !  rtph264depay ! decodebin ! videoconvert ! autovideosink'
 
 function gitsed () {
     originalText=$1
@@ -132,10 +125,36 @@ function gitsed () {
         git grep -l "$originalText" | xargs sed -i "s/$originalText/$newText/g"
     else
         diff --color --context=1 \
-            <(git grep -l "$originalText" | xargs cat) \
-            <(git grep -l "$originalText" | xargs sed "s/$originalText/$newText/g")
+            <$(git grep -l "$originalText" | xargs cat) \
+            <$(git grep -l "$originalText" | xargs sed "s/$originalText/$newText/g")
     fi
 }
+
+}
+source $HOME/.dev.env
+. $HOME/.asdf/asdf.sh
+complete -W "$(docker ps --format "{{.Names}}")" dockerlogs
+
+function _makefile_targets {
+    local curr_arg;
+    local targets;
+
+    # Find makefile targets available in the current directory
+    targets=''
+    if [[ -e "$(pwd)/Makefile" ]]; then
+        targets=$( \
+            grep -oE '^[a-zA-Z0-9_-]+:' Makefile \
+            | sed 's/://' \
+            | tr '\n' ' ' \
+        )
+    fi
+
+    # Filter targets based on user input to the bash completion
+    curr_arg=${COMP_WORDS[COMP_CWORD]}
+    COMPREPLY=( $(compgen -W "${targets[@]}" -- $curr_arg ) );
+}
+complete -F _makefile_targets make
+alias goharvest='cd ~/git/harvest'
 
 function encodeh2658bit() {
     input=$1
@@ -144,4 +163,3 @@ function encodeh2658bit() {
         -pix_fmt yuv420p -c:v hevc_nvenc -preset slow -rc vbr_hq -b:v 6M \
         -maxrate:v 10M -c:a aac -b:a 240k \
         $output
-}
