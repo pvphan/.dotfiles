@@ -124,6 +124,18 @@ alias vim="nvim"
 alias goharvest="cd ~/git/harvest"
 alias vims="nvim -S Session.vim"
 
+function loc () {
+    if [ "$#" -eq 1 ]; then
+        ext=$1
+        find . -name "*.$ext" | xargs wc -l | sort -nr | less
+    else
+        echo "Prints the number of lines of code in this directory and "
+        echo "  and below, recursively: "
+        echo ""
+        echo " Example usage: loc <extension>"
+    fi
+}
+
 function _makefile_targets {
     local curr_arg;
     local targets;
