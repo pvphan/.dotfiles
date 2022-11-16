@@ -136,3 +136,12 @@ function gitsed () {
             <(git grep -l "$originalText" | xargs sed "s/$originalText/$newText/g")
     fi
 }
+
+function encodeh2658bit() {
+    input=$1
+    output=$2
+    ffmpeg -hwaccel cuvid -i $input \
+        -pix_fmt yuv420p -c:v hevc_nvenc -preset slow -rc vbr_hq -b:v 6M \
+        -maxrate:v 10M -c:a aac -b:a 240k \
+        $output
+}
