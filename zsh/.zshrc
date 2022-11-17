@@ -123,6 +123,8 @@ function gitsed () {
 alias vim="nvim"
 alias goharvest="cd ~/git/harvest"
 alias vims="nvim -S Session.vim"
+alias gtop="watch -n 1 nvidia-smi"
+alias rsync2="rsync -ah --progress --append-verify"
 
 function loc () {
     if [ "$#" -eq 1 ]; then
@@ -160,7 +162,9 @@ NEWLINE=$'\n'
 PROMPT='%(!.%{%F{yellow}%}.)%{$fg[green]%}$USER@%{$fg[green]%}%M :%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}${NEWLINE} %{$fg_bold[red]%}➜ % %{$reset_color%}'
 
 source ~/.dev.env
+. $HOME/.asdf/asdf.sh
 
 if which ruby >/dev/null && which gem >/dev/null; then
   PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
+

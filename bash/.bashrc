@@ -130,9 +130,6 @@ function gitsed () {
     fi
 }
 
-}
-source $HOME/.dev.env
-. $HOME/.asdf/asdf.sh
 complete -W "$(docker ps --format "{{.Names}}")" dockerlogs
 
 function _makefile_targets {
@@ -163,3 +160,4 @@ function encodeh2658bit() {
         -pix_fmt yuv420p -c:v hevc_nvenc -preset slow -rc vbr_hq -b:v 6M \
         -maxrate:v 10M -c:a aac -b:a 240k \
         $output
+}
