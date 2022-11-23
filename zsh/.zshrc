@@ -124,6 +124,22 @@ alias vim="nvim"
 alias goharvest="cd ~/git/harvest"
 alias vims="nvim -S Session.vim"
 alias gtop="watch -n 1 nvidia-smi"
+<<<<<<< HEAD
+=======
+alias rsync2="rsync -ah --progress --append-verify"
+
+function loc () {
+    if [ "$#" -eq 1 ]; then
+        ext=$1
+        find . -name "*.$ext" | xargs wc -l | sort -nr | less
+    else
+        echo "Prints the number of lines of code in this directory and "
+        echo "  and below, recursively: "
+        echo ""
+        echo " Example usage: loc <extension>"
+    fi
+}
+>>>>>>> 0ae6dda1ce7a58da08051265c81b551f3c7234c9
 
 function _makefile_targets {
     local curr_arg;
@@ -146,9 +162,10 @@ function _makefile_targets {
 complete -F _makefile_targets make
 
 NEWLINE=$'\n'
-PROMPT='%(!.%{%F{yellow}%}.)%{$fg[green]%}$USER@%{$fg[green]%}%M :%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}${NEWLINE} %{$fg_bold[red]%}➜ % %{$reset_color%}'
+PROMPT='%(!.%{%F{yellow}%}.)%{$fg[cyan]%}$USER@%{$fg[cyan]%}%M :%{$fg_bold[cyan]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}${NEWLINE} %{$fg_bold[red]%}➜ % %{$reset_color%}'
 
 source ~/.dev.env
+. $HOME/.asdf/asdf.sh
 
 if which ruby >/dev/null && which gem >/dev/null; then
   PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"

@@ -130,8 +130,6 @@ function gitsed () {
     fi
 }
 
-source $HOME/.dev.env
-. $HOME/.asdf/asdf.sh
 complete -W "$(docker ps --format "{{.Names}}")" dockerlogs
 
 function _makefile_targets {
@@ -154,3 +152,12 @@ function _makefile_targets {
 }
 complete -F _makefile_targets make
 alias goharvest='cd ~/git/harvest'
+
+function encodeh2658bit() {
+    input=$1
+    output=$2
+    ffmpeg -hwaccel cuvid -i $input \
+        -pix_fmt yuv420p -c:v hevc_nvenc -preset slow -rc vbr_hq -b:v 6M \
+        -maxrate:v 10M -c:a aac -b:a 240k \
+        $output
+}
