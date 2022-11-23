@@ -16,6 +16,8 @@ Plugin 'joom/latex-unicoder.vim'
 Plugin 'vim-python/python-syntax'
 Plugin 'JuliaEditorSupport/julia-vim'
 Plugin 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plugin 'nvim-treesitter/nvim-treesitter-context'
+Plugin 'neovim/nvim-lspconfig'
 call vundle#end()
 
 filetype plugin indent on
@@ -111,7 +113,7 @@ augroup filetypedetect
 augroup END
 
 " for copy-paste to clipboard
-set clipboard+=unnamedplus
+"set clipboard+=unnamedplus
 
 " persistent undo
 if has("persistent_undo")
