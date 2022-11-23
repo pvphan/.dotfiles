@@ -124,6 +124,8 @@ alias vim="nvim"
 alias goharvest="cd ~/git/harvest"
 alias vims="nvim -S Session.vim"
 alias gtop="watch -n 1 nvidia-smi"
+<<<<<<< HEAD
+=======
 alias rsync2="rsync -ah --progress --append-verify"
 
 function loc () {
@@ -137,6 +139,7 @@ function loc () {
         echo " Example usage: loc <extension>"
     fi
 }
+>>>>>>> 0ae6dda1ce7a58da08051265c81b551f3c7234c9
 
 function _makefile_targets {
     local curr_arg;
@@ -159,7 +162,7 @@ function _makefile_targets {
 complete -F _makefile_targets make
 
 NEWLINE=$'\n'
-PROMPT='%(!.%{%F{yellow}%}.)%{$fg[green]%}$USER@%{$fg[green]%}%M :%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}${NEWLINE} %{$fg_bold[red]%}➜ % %{$reset_color%}'
+PROMPT='%(!.%{%F{yellow}%}.)%{$fg[cyan]%}$USER@%{$fg[cyan]%}%M :%{$fg_bold[cyan]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}${NEWLINE} %{$fg_bold[red]%}➜ % %{$reset_color%}'
 
 source ~/.dev.env
 . $HOME/.asdf/asdf.sh
@@ -168,3 +171,18 @@ if which ruby >/dev/null && which gem >/dev/null; then
   PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
+bindkey "${key[Up]}" up-line-or-local-history
+bindkey "${key[Down]}" down-line-or-local-history
+
+up-line-or-local-history() {
+    zle set-local-history 1
+    zle up-line-or-history
+    zle set-local-history 0
+}
+zle -N up-line-or-local-history
+down-line-or-local-history() {
+    zle set-local-history 1
+    zle down-line-or-history
+    zle set-local-history 0
+}
+zle -N down-line-or-local-history
