@@ -124,8 +124,6 @@ alias vim="nvim"
 alias goharvest="cd ~/git/harvest"
 alias vims="nvim -S Session.vim"
 alias gtop="watch -n 1 nvidia-smi"
-<<<<<<< HEAD
-=======
 alias rsync2="rsync -ah --progress --append-verify"
 
 function loc () {
@@ -139,7 +137,6 @@ function loc () {
         echo " Example usage: loc <extension>"
     fi
 }
->>>>>>> 0ae6dda1ce7a58da08051265c81b551f3c7234c9
 
 function _makefile_targets {
     local curr_arg;
