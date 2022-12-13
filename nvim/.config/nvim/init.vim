@@ -18,6 +18,7 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'neovim/nvim-lspconfig'
+Plug 'jvirtanen/vim-hcl'
 call plug#end()
 
 filetype plugin indent on
