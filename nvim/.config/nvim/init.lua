@@ -96,7 +96,9 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 vim.o.hlsearch = true
 
 -- Make line numbers default
+vim.wo.number = true
 vim.wo.relativenumber = true
+vim.wo.cursorline = true
 
 ---- Enable mouse mode
 --vim.o.mouse = 'a'
@@ -338,8 +340,7 @@ require('mason').setup()
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
 --local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'gopls' }
---local servers = { 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'gopls' }
-local servers = { 'rust_analyzer', 'tsserver', 'sumneko_lua', 'gopls' }
+local servers = { 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'gopls' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
