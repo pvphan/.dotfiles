@@ -35,11 +35,6 @@ require('packer').startup(function(use)
     after = 'nvim-treesitter',
   }
 
-  use {
-    'nvim-treesitter/nvim-treesitter-context',
-    after = 'nvim-treesitter',
-  }
-
   -- Git related plugins
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
@@ -53,6 +48,7 @@ require('packer').startup(function(use)
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
+  use 'jremmen/vim-ripgrep' -- RipGrep required by telescope live_grep
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
@@ -100,8 +96,8 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true
 
----- Enable mouse mode
---vim.o.mouse = 'a'
+-- Enable mouse mode
+vim.o.mouse = 'c'
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -110,8 +106,8 @@ vim.o.breakindent = true
 vim.o.undofile = true
 
 -- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.o.ignorecase = false
+vim.o.smartcase = false
 
 -- Decrease update time
 vim.o.updatetime = 0
@@ -138,17 +134,6 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
----- [[ Highlight on yank ]]
----- See `:help vim.highlight.on_yank()`
---local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
---vim.api.nvim_create_autocmd('TextYankPost', {
---  callback = function()
---    vim.highlight.on_yank()
---  end,
---  group = highlight_group,
---  pattern = '*',
---})
 
 -- Set lualine as statusline
 -- See `:help lualine.txt`
@@ -212,10 +197,16 @@ vim.keymap.set('n', '<leader>/', function()
 end, { desc = '[/] Fuzzily search in current buffer]' })
 
 vim.keymap.set('n', '<c-p>', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
+vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
+vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string,
+  {
+    desc = '[S]earch current [W]ord',
+  }
+)
+
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[S]earch [B]uffers' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -383,4 +374,4 @@ require('lspconfig').sumneko_lua.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-require("pvphan")
+require('pvphan')
