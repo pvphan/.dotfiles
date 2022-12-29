@@ -85,6 +85,11 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = vim.fn.expand '$MYVIMRC',
 })
 
+-- Remove all trailing whitespace on write
+vim.api.nvim_create_autocmd('BufWritePre', {
+  command = '%s/\\s\\+$//e',
+})
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
