@@ -47,8 +47,10 @@ require('packer').startup(function(use)
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
   -- Fuzzy Finder (files, lsp, etc)
-  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
-  use 'jremmen/vim-ripgrep' -- RipGrep required by telescope live_grep
+  use { 'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    requires = { 'nvim-lua/plenary.nvim', 'jremmen/vim-ripgrep' }
+  }
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
@@ -343,6 +345,12 @@ local servers = { 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'gopls'
 require('mason-lspconfig').setup {
   ensure_installed = servers,
 }
+
+for _, lsp in ipairs(servers) do
+  require('lspconfig')[lsp].setup {
+    on_attach = on_attach,
+  }
+end
 
 -- Turn on lsp status information
 require('fidget').setup()
