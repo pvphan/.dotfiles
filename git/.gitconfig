@@ -41,7 +41,7 @@
     ra = !git r --all
     l = "!. ~/.githelpers && pretty_git_log"
     la = !git l --all
-    fix = "!f() { vim `git diff --name-only`; }; f"
+    fix = "!f() { nvim `git diff --name-only`; }; f"
 
 [merge]
     tool = nvim
@@ -52,7 +52,7 @@
 	email = pvphan90@gmail.com
 	name = Vinh Phan
 [core]
-	editor = vim
+	editor = nvim
 [mergetool "nvim"]
     cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [mergetool]
