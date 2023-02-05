@@ -51,6 +51,7 @@ require('packer').startup(function(use)
 
   -- Other
   use 'godlygeek/tabular' -- Detect tabstop and shiftwidth automatically
+  use 'preservim/nerdtree' -- File system explorer
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim',
@@ -71,6 +72,14 @@ require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
+
+-- Configure nerdtree
+vim.cmd([[
+  command! NT NERDTreeToggle
+  command! NTF NERDTreeFind
+  let NERDTreeRespectWildIgnore=1
+  let NERDTreeIgnore = ['\.pyc$']
+]])
 
 -- When we are bootstrapping a configuration, it doesn't
 -- make sense to execute the rest of the init.lua.
@@ -109,7 +118,7 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true
 
--- Enable mouse mode
+-- Disable mouse mode
 vim.o.mouse = 'c'
 
 -- Enable break indent
@@ -118,7 +127,7 @@ vim.o.breakindent = true
 -- Save undo history
 vim.o.undofile = true
 
--- Case insensitive searching UNLESS /C or capital in search
+-- Case sensitive searching
 vim.o.ignorecase = false
 vim.o.smartcase = false
 
