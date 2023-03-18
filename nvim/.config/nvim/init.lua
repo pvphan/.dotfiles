@@ -52,6 +52,8 @@ require('packer').startup(function(use)
   -- Other
   use 'godlygeek/tabular' -- Detect tabstop and shiftwidth automatically
   use 'preservim/nerdtree' -- File system explorer
+  use 'machakann/vim-sandwich' -- Surround shortcuts
+
   -- Configure nerdtree
   vim.cmd([[
     command! NT NERDTreeToggle
