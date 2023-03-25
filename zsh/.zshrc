@@ -183,3 +183,5 @@ down-line-or-local-history() {
     zle set-local-history 0
 }
 zle -N down-line-or-local-history
+
+alias reloadcuda="sudo rmmod nvidia_uvm && sudo modprobe nvidia_uvm && export CUDA_VISIBLE_DEVICES=0"
