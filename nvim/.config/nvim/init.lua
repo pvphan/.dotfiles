@@ -230,6 +230,13 @@ require('gitsigns').setup {
 require('telescope').setup {
   defaults = {
     file_ignore_patterns = { "__pycache__" },
+    layout_strategy = 'vertical',
+    layout_config = {
+      vertical = {
+        prompt_position = "top",
+        mirror = true,
+      },
+    },
     mappings = {
       i = {
         ['<C-u>'] = false,
