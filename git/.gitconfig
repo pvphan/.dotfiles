@@ -42,6 +42,7 @@
     l = "!. ~/.githelpers && pretty_git_log"
     la = !git l --all
     fix = "!f() { nvim `git diff --name-only`; }; f"
+    t = !git log --tags --simplify-by-decoration --pretty='format:%ci %d'
 
 [merge]
     tool = nvim
