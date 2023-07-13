@@ -54,6 +54,7 @@ require('packer').startup(function(use)
   use 'preservim/nerdtree' -- File system explorer
   use 'machakann/vim-sandwich' -- Surround shortcuts
   use 'elixir-editors/vim-elixir'
+  use 'joom/latex-unicoder.vim'
 
   -- Configure nerdtree
   vim.cmd([[
@@ -229,6 +230,13 @@ require('gitsigns').setup {
 require('telescope').setup {
   defaults = {
     file_ignore_patterns = { "__pycache__" },
+    layout_strategy = 'vertical',
+    layout_config = {
+      vertical = {
+        prompt_position = "top",
+        mirror = true,
+      },
+    },
     mappings = {
       i = {
         ['<C-u>'] = false,

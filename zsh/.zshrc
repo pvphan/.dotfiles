@@ -99,8 +99,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH="$PATH:~/bin"
-export PATH="$PATH:/opt/homebrew/bin/"
+export PATH="$PATH:/home/vinh/bin"
+export PATH="$PATH:/home/vinh/apps/nvim-linux64/bin"
 
 function gitsed () {
     originalText=$1
@@ -120,9 +120,8 @@ function gitsed () {
     fi
 }
 
-alias vim="nvim"
 alias goharvest="cd ~/git/harvest"
-alias vims="nvim -S Session.vim"
+alias nvims="nvim -S Session.vim"
 alias gtop="watch -n 1 nvidia-smi"
 alias rsync2="rsync -ah --progress --append-verify"
 
