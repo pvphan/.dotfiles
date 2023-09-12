@@ -120,7 +120,6 @@ function gitsed () {
     fi
 }
 
-alias goharvest="cd ~/git/harvest"
 alias nvims="nvim -S Session.vim"
 alias gtop="watch -n 1 nvidia-smi"
 alias rsync2="rsync -ah --progress --append-verify"
@@ -137,31 +136,8 @@ function loc () {
     fi
 }
 
-function _makefile_targets {
-    local curr_arg;
-    local targets;
-
-    # Find makefile targets available in the current directory
-    targets=''
-    if [[ -e "$(pwd)/Makefile" ]]; then
-        targets=$( \
-            grep -oE '^[a-zA-Z0-9_-]+:' Makefile \
-            | sed 's/://' \
-            | tr '\n' ' ' \
-        )
-    fi
-
-    # Filter targets based on user input to the bash completion
-    curr_arg=${COMP_WORDS[COMP_CWORD]}
-    COMPREPLY=( $(compgen -W "${targets[@]}" -- $curr_arg ) );
-}
-complete -F _makefile_targets make
-
 NEWLINE=$'\n'
 PROMPT='%(!.%{%F{yellow}%}.)%{$fg[cyan]%}$USER@%{$fg[cyan]%}%M :%{$fg_bold[cyan]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}${NEWLINE} %{$fg_bold[red]%}➜ % %{$reset_color%}'
-
-source ~/.dev.env
-. $HOME/.asdf/asdf.sh
 
 if which ruby >/dev/null && which gem >/dev/null; then
   PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
@@ -183,5 +159,4 @@ down-line-or-local-history() {
 }
 zle -N down-line-or-local-history
 
-alias reloadcuda="sudo rmmod nvidia_uvm && sudo modprobe nvidia_uvm && export CUDA_VISIBLE_DEVICES=0"
 alias cleandocker="docker images -a | grep none | awk '{ print $3; }' | xargs docker rmi -f"
