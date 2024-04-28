@@ -50,10 +50,9 @@ require('packer').startup(function(use)
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
   -- Other
-  use 'godlygeek/tabular' -- Detect tabstop and shiftwidth automatically
+  use 'godlygeek/tabular' -- Macro to format text blocks as tables
   use 'preservim/nerdtree' -- File system explorer
   use 'machakann/vim-sandwich' -- Surround shortcuts
-  use 'elixir-editors/vim-elixir'
   use 'joom/latex-unicoder.vim'
 
   -- Configure nerdtree
