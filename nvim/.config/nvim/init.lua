@@ -55,6 +55,7 @@ require('packer').startup(function(use)
   use 'machakann/vim-sandwich' -- Surround shortcuts
   use 'elixir-editors/vim-elixir'
   use 'joom/latex-unicoder.vim'
+  use 'averms/black-nvim'
 
   -- Configure nerdtree
   vim.cmd([[
