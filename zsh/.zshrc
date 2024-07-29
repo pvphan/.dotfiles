@@ -160,3 +160,4 @@ down-line-or-local-history() {
 zle -N down-line-or-local-history
 
 alias cleandocker="docker images -a | grep none | awk '{ print $3; }' | xargs docker rmi -f"
+source ~/.dev.env

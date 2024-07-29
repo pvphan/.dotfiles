@@ -161,3 +161,4 @@ function encodeh2658bit() {
         -maxrate:v 10M -c:a aac -b:a 240k \
         $output
 }
+. "$HOME/.cargo/env"
