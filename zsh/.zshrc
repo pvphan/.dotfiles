@@ -160,3 +160,19 @@ down-line-or-local-history() {
 zle -N down-line-or-local-history
 
 alias cleandocker="docker images -a | grep none | awk '{ print $3; }' | xargs docker rmi -f"
+# alias waketoaster="wakeonlan -i 192.168.0.255 b4:2e:99:d5:cf:d6"
+alias waketoaster="wakeonlan -i 192.168.0.255 a8:a1:59:39:23:a3"
+
+function gifit () {
+    if [ "$#" -eq 2 ]; then
+        input=$1
+        output=$2
+        ffmpeg -i $input -vf "fps=10,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 $output -y
+    else
+        echo "Create a gif from a video file: "
+        echo ""
+        echo " Example usage: gifit <input> <output>"
+    fi
+}
+
+source ~/venvs/amaru/bin/activate
